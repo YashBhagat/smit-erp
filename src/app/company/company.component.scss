@@ -1,0 +1,36 @@
+mat-grid-tile {
+  margin-left: 10px;
+}
+.container{
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+
+    h2{
+     justify-content: center;
+    }
+  }
+}
+
+.example-card {
+  max-width: 100%;
+}
+
+mat-card-title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+button{
+  width: 275px;
+}
+

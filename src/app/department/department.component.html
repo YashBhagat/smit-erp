@@ -1,0 +1,22 @@
+<button mat-flat-button color="primary"  (click)="openAddDepartment()" >ADD DEPARETMENT</button>
+
+
+<div  *ngIf="(department | json) === '[]'" class="container">
+  <img src="assets/noData.svg" alt="">
+</div>
+<div *ngIf="(department | json) != '[]'" class="container">
+  <mat-grid-list cols="6" rowHeight="130px" >
+    <mat-grid-tile *ngFor="let department of department">
+      <mat-card  class="example-card" >
+        <mat-card-header>
+          <mat-icon mat-card-avatar >store</mat-icon>
+          <mat-card-title>{{department.departement_name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <!--<button mat-flat-button color="primary" >ADD RECORD</button>-->
+<!--          <button mat-stroked-button color="primary" (click)="openDetailDepartment()"  >VIEW DETAILS</button>-->
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

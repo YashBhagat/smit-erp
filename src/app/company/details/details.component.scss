@@ -1,0 +1,48 @@
+mat-card{
+  width: 82%;
+
+}
+section {
+  display: table;
+}
+.example-button-row {
+  display: table-cell;
+  width: 190px;
+}
+
+.card-2{
+  margin-top: 10px;
+}
+
+button{
+  margin-top: 12px;
+}
+.date{
+  margin:10px 0px;
+}
+  .example-table-container {
+  position: relative;
+  min-height: 200px;
+  max-height: 85vh;
+  overflow: auto;
+}
+
+table {
+
+  border-collapse: collapse;
+  width: 80%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+
+  button {
+    width: 100%;
+  }
+}
+
+.example-full-width {
+  width: 25%;
+}

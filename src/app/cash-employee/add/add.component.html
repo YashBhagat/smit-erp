@@ -1,0 +1,36 @@
+<h1>Add Cash Employee</h1>
+
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+
+
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Employee Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+ <div  *ngIf="!isLoadingResults">
+   <form  *ngIf="!isAdded" (ngSubmit)="f.form.valid &&  addEmployee()" name="form" #f="ngForm">
+     <mat-form-field hintLabel="Max 20 characters" appearance="outline">
+       <mat-label>Enter Employee Name</mat-label>
+       <input matInput #name="ngModel" name="name" [(ngModel)]="form.name" maxlength="20" placeholder="Ex. Yash Bhagat" required>
+       <mat-hint align="end">{{name.value?.length || 0}}/20</mat-hint>
+     </mat-form-field>
+
+     <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+       <mat-label>Enter Phone Number</mat-label>
+       <span matPrefix>+91 &nbsp;</span>
+       <input matInput #phone_number="ngModel" name="phone_number" [(ngModel)]="form.phone_number" maxlength="10"
+              minlength="10" type="tel" matInput placeholder="555-555-1234" required>
+       <mat-hint align="end">{{phone_number.value?.length || 0}}/10</mat-hint>
+     </mat-form-field>
+
+     <div mat-dialog-actions>
+       <button type="submit" mat-raised-button color="primary">Add Employee</button>
+       <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+     </div>
+   </form>
+ </div>
+

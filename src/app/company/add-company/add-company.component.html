@@ -1,0 +1,77 @@
+<h1>Add Company</h1>
+
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+
+
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Company Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+
+
+<div  *ngIf="!isLoadingResults" class="example-container">
+  <form *ngIf="!isAdded"  (ngSubmit)="f.form.valid &&  addCompany()" name="form" #f="ngForm">
+
+    <mat-form-field  appearance="outline">
+      <mat-label>Enter Company Name</mat-label>
+      <input matInput #company_name="ngModel" name="company_name" [(ngModel)]="form.company_name"  placeholder="Buildoster LLP" required>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+      <mat-label>Enter Phone Number</mat-label>
+      <span matPrefix>+91 &nbsp;</span>
+      <input matInput #phone_number="ngModel" name="phone_number" [(ngModel)]="form.phone_number" maxlength="10" minlength="10" type="tel" matInput placeholder="555-555-1234" required>
+      <mat-hint align="end">{{phone_number.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 15 characters" appearance="outline">
+      <mat-label>Enter GST Number</mat-label>
+      <input matInput #gst_number="ngModel" name="gst_number" [(ngModel)]="form.gst_number" maxlength="15" minlength="15"  placeholder="22AAABB000A1Z5" required>
+      <mat-hint align="end">{{gst_number.value?.length || 0}}/14</mat-hint>
+    </mat-form-field>
+
+    <p>
+      <mat-form-field class="example-full-width" hintLabel="Max 50 characters" appearance="outline">
+        <mat-label>Enter Address</mat-label>
+        <input matInput #address="ngModel" name="address" [(ngModel)]="form.address" maxlength="50"   placeholder="Road Name, Building Name" required>
+        <mat-hint align="end">{{address.value?.length || 0}}/50</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="example-full-width" hintLabel="Max 50 characters" appearance="outline">
+        <mat-label>Enter Street</mat-label>
+        <input matInput #street="ngModel" name="street" [(ngModel)]="form.street" maxlength="50"   placeholder="Road Name, Building Name" required>
+        <mat-hint align="end">{{street.value?.length || 0}}/50</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+        <mat-label>Enter City Name</mat-label>
+        <input matInput #city="ngModel" name="city" [(ngModel)]="form.city" maxlength="10"    placeholder="Mumbai" required>
+        <mat-hint align="end">{{city.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Max 15 characters" appearance="outline">
+        <mat-label>Enter State</mat-label>
+        <input matInput #state="ngModel" name="state" [(ngModel)]="form.state" maxlength="15"   placeholder="Maharashtra" required>
+        <mat-hint align="end">{{state.value?.length || 0}}/15</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+        <mat-label>Enter Pin Code</mat-label>
+        <input matInput #pin_code="ngModel" name="pin_code" [(ngModel)]="form.pin_code" maxlength="6" minlength="6"    placeholder="400092" required>
+        <mat-hint align="end">{{pin_code.value?.length || 0}}/6</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <div mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary">Add Company</button>
+      <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+    </div>
+
+  </form>
+</div>

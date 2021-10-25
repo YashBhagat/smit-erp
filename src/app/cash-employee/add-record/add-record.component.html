@@ -1,0 +1,76 @@
+<h1> Add Cash Employee Record</h1>
+
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+
+
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Data Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+
+
+<div *ngIf="!isLoadingResults"  class="example-container">
+  <form  *ngIf="!isAdded" (ngSubmit)="f.form.valid &&  addEmployee()" name="form" #f="ngForm">
+
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input #date="ngModel" name="date" matInput [matDatepicker]="picker" [(ngModel)]="form.date" matInput required >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+<!--    <mat-form-field  appearance="outline">-->
+<!--      <mat-label>Choose a date</mat-label>-->
+<!--      <input  required>-->
+<!--      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--      <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>-->
+<!--    </mat-form-field>-->
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select Company</mat-label>
+      <mat-select [(ngModel)]="selectedCompany" (ngModelChange)="getDepartmentList($event)"  name="company" required>
+        <mat-option *ngFor="let company of company" [value]="company.id">
+          {{company.company_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Select Department</mat-label>
+        <mat-select  [(ngModel)]="selectedDepartment" (ngModelChange)="setDepartmentRate($event)" name="department" required>
+          <mat-option *ngFor="let department of department" [value]="department.id">
+            {{department.departement.departement_name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field hintLabel="Max 3 characters" appearance="outline">
+        <mat-label>Enter Employee Rate</mat-label>
+        <input matInput #rate="ngModel" name="rate" [(ngModel)]="form.rate" maxlength="3" placeholder="Ex. 95" required>
+        <mat-hint align="end">{{rate.value?.length || 0}}/3</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Max 2 characters" appearance="outline">
+        <mat-label>Enter Employee Hours</mat-label>
+        <input matInput #rate="ngModel" name="rate" [(ngModel)]="form.hour" maxlength="2" placeholder="Ex. 95" required>
+        <mat-hint align="end">{{rate.value?.length || 0}}/2</mat-hint>
+      </mat-form-field>
+
+
+    </p>
+
+    <div mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary">Add Employee</button>
+      <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+    </div>
+  </form>
+</div>

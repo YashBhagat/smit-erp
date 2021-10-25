@@ -1,0 +1,67 @@
+<mat-card class="example-card">
+  <mat-card-title-group>
+    <mat-card-title>  <mat-icon mat-card-avatar >business</mat-icon>{{companyDetail!.company_name}}</mat-card-title>
+    <mat-card-subtitle>{{companyDetail!.gst_number}}</mat-card-subtitle>
+    <div mat-card-sm-image class="example-button-row">
+      <button mat-flat-button color="primary" (click)="openDownload()" >DOWNLOAD DATA</button>
+      <button mat-stroked-button color="primary" (click)="openDepartment()" >ADD DEPARTMENT</button>
+      <button mat-stroked-button color="primary" (click)="openDepartmentList()" >LIST DEPARTMENT</button>
+    </div>
+  </mat-card-title-group>
+  <mat-card-content>
+    <h4> <b>Address :{{companyDetail!.address}},
+      <br> {{companyDetail!.street}},
+      <br>{{companyDetail!.city}}- {{companyDetail!.pin_code}}, {{companyDetail!.state}}.</b> </h4>
+  </mat-card-content>
+</mat-card>
+
+<div class="date">
+  <mat-form-field appearance="outline">
+    <mat-label>Month and Year</mat-label>
+    <input matInput [matDatepicker]="dp" [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <mat-form-field style="margin-left: 15px" class="example-full-width" appearance="outline">
+    <mat-label>Search...</mat-label>
+    <input matInput ngModel="search.SN" [(ngModel)]="Search" >
+  </mat-form-field>
+</div>
+
+
+<table>
+  <tr>
+    <th>Employee ID</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Rate</th>
+    <th>Total Hours</th>
+    <th>Total Advance</th>
+    <th>Tax</th>
+    <th>Total Amount</th>
+    <th>Add Record</th>
+    <th>View Record</th>
+    <th>Bank Details</th>
+  </tr>
+  <tr *ngFor="let item of totalHoursAdv | search: Search" >
+    <td>{{item.id}}</td>
+    <td>{{item.employee_name}}</td>
+    <td>{{item.department_name}}</td>
+    <td><b>{{item.per_hours_rate | currency: 'INR'}}</b></td>
+    <td>{{item.totalHours}}</td>
+    <td style="color: #f65e5e" ><b>-{{item.totalAdvance | currency: 'INR'}}</b></td>
+    <td style="color: #f65e5e"><b>-{{item.ptax | currency: 'INR' }}</b></td>
+    <td style="color: #12a472"><b>{{item.totalAmount| currency: 'INR' }}</b></td>
+    <td><button mat-flat-button color="primary" (click)="AddRecord(item.id, item.department_rate, item.per_hours_rate )" >ADD </button></td>
+    <td><button mat-stroked-button color="primary" (click)="ViewRecord(item.id)" >VIEW RECORD</button></td>
+    <td><button mat-stroked-button color="primary" (click)="OpenEmployeeDetails(item.id)" >BANK DETAILS</button></td>
+  </tr>
+
+</table>
+
+

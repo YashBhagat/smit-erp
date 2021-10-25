@@ -1,0 +1,23 @@
+<button mat-flat-button color="primary"  (click)="OpenModel()" >ADD COMPANY</button>
+
+
+<div  *ngIf="(companys | json) === '[]'" class="container">
+  <img src="assets/noData.svg" alt="">
+</div>
+<div *ngIf="(companys | json) != '[]'" class="container">
+  <mat-grid-list cols="4" rowHeight="130px" >
+    <mat-grid-tile *ngFor="let companys of companys">
+      <mat-card  class="example-card" >
+        <mat-card-header>
+          <mat-icon mat-card-avatar >business</mat-icon>
+          <mat-card-title>{{companys.company_name}}</mat-card-title>
+          <mat-card-subtitle>{{companys.gst_number}} </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+<!--          <button mat-flat-button color="primary" >ADD RECORD</button>-->
+          <button mat-stroked-button color="primary"  routerLink="details/{{companys.id}}" >VIEW DETAILS</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

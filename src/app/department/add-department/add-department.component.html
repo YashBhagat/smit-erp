@@ -1,0 +1,31 @@
+<h1>Add Department</h1>
+
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+
+
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Department Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+
+
+<div  *ngIf="!isLoadingResults" class="example-container">
+  <form *ngIf="!isAdded"  (ngSubmit)="f.form.valid &&  addDepartment()" name="form" #f="ngForm">
+
+    <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+      <mat-label>Enter Department Name</mat-label>
+      <input matInput #departement_name="ngModel" name="departement_name" [(ngModel)]="form.departement_name" maxlength="10"   placeholder="Waxing" required>
+    </mat-form-field>
+
+
+    <div mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary">Add Department</button>
+      <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+    </div>
+
+  </form>
+</div>

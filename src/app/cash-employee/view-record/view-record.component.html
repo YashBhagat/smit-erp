@@ -1,0 +1,33 @@
+<h1> Cash Employee Record</h1>
+
+<mat-form-field appearance="outline">
+  <mat-label>Month and Year</mat-label>
+  <input matInput [matDatepicker]="dp" [formControl]="date">
+  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker #dp
+                  startView="multi-year"
+                  (yearSelected)="chosenYearHandler($event)"
+                  (monthSelected)="chosenMonthHandler($event, dp)"
+                  panelClass="example-month-picker">
+  </mat-datepicker>
+</mat-form-field>
+<button style="margin-left: 10px" type="submit" mat-raised-button (click)="getRecord()" color="primary">GET DATA</button>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Hours</th>
+    <th>Advance Salary</th>
+
+  </tr>
+  <tr *ngFor="let item of cashHours" >
+    <td style="width: 100%">{{item.date | date :"d MMM, y"}}</td>
+    <td>{{item.company_name}}</td>
+    <td>{{item.hours}}</td>
+    <td style="color: #f65e5e" ><b>-{{item.amount | currency: 'INR'}}</b></td>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>

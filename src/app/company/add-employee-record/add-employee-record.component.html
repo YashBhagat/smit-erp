@@ -1,0 +1,41 @@
+<h1>Add Daily Records</h1>
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Record Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+
+<div  *ngIf="!isLoadingResults">
+  <div *ngIf="!isAdded">
+    <section class="example-section">
+      <mat-slide-toggle [(ngModel)]="checked">Employee Absent</mat-slide-toggle>
+    </section>
+   <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input readonly matInput  [matDatepicker]="picker"  [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker  #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+    </mat-form-field>
+
+    <div *ngIf="checked == false">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Hours</mat-label>
+        <input [(ngModel)]="form.hours" type="number" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Advance Payment</mat-label>
+        <input [(ngModel)]="form.amount" type="number" matInput>
+      </mat-form-field>
+    </div>
+    <p>
+      <button (click)="addDailyHours()" mat-flat-button color="primary">Add Data </button>
+      <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+    </p>
+  </div>
+</div>
+

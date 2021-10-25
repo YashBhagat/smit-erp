@@ -1,0 +1,31 @@
+
+<button mat-flat-button color="primary"  (click)="OpenModal()"  >ADD CASH EMPLOYEE</button>
+<mat-form-field style="margin-left: 15px" class="example-full-width" appearance="outline">
+  <mat-label>Search Cash Employee...</mat-label>
+  <input matInput ngModel="search.SN" [(ngModel)]="Search" >
+</mat-form-field>
+
+<div class="container">
+  <mat-grid-list cols="4" rowHeight="150px" >
+    <mat-grid-tile *ngFor="let employees of employees | search: Search ">
+      <mat-card  class="example-card" >
+        <mat-card-header>
+          <mat-icon mat-card-avatar >account_circle</mat-icon>
+          <mat-card-title>{{employees.employee_name}}</mat-card-title>
+<!--          <mat-card-subtitle>{{employees.phone_number}}</mat-card-subtitle>-->
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-flat-button color="primary" (click)="AddRecord(employees.id)" >ADD RECORD</button>
+          <button mat-stroked-button color="primary" (click)="ListRecord(employees.id)" >VIEW RECORD</button>
+          <button (click)="OpenModal()"  mat-icon-button>
+            <mat-icon>update</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>
+
+
+

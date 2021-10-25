@@ -1,0 +1,58 @@
+<mat-sidenav-container class="example-container" >
+  <mat-sidenav class="example-sidenav-content"  #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+               (closed)="events.push('close!')">
+    <div class="side-nav">
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option routerLink="department" >
+          <mat-icon mat-list-icon>store</mat-icon>
+          <div mat-line>Department</div>
+        </mat-list-option>
+        <mat-list-option  routerLink="company" >
+          <mat-icon mat-list-icon>business</mat-icon>
+          <div mat-line>Company</div>
+        </mat-list-option>
+        <mat-list-option selected routerLink="" >
+          <mat-icon mat-list-icon>people</mat-icon>
+          <div mat-line>Employee</div>
+        </mat-list-option >
+        <mat-list-option routerLink="cash/employee" >
+          <mat-icon mat-list-icon>money</mat-icon>
+          <div mat-line>Cash Employee</div>
+        </mat-list-option>
+
+<!--        <mat-list-option routerLink="transaction" >-->
+<!--          <mat-icon mat-list-icon>receipt_long</mat-icon>-->
+<!--          <div mat-line>Transaction</div>-->
+<!--        </mat-list-option>-->
+<!--        <mat-list-option routerLink="user" >-->
+<!--            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>-->
+<!--            <div mat-line>User</div>-->
+<!--        </mat-list-option>-->
+      </mat-selection-list>
+      <button (click)="logout()" i class="side-nav-button" mat-raised-button color="accent">
+        <mat-icon class="log-out-icon">lock_open</mat-icon>
+       Logout
+      </button>
+    </div>
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="example-container ">
+
+    <mat-toolbar color="primary">
+      <button  (click)="backClicked()"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span>Smit-Enterprises</span>
+
+    </mat-toolbar>
+    <div class="router">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+

@@ -1,0 +1,19 @@
+<h1>Employee Record</h1>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Hours</th>
+    <th>Advance Salary</th>
+
+  </tr>
+  <tr *ngFor="let item of hoursData" >
+    <td style="width: 100%">{{item.date | date :"d MMM, y" }}</td>
+    <td>{{item.status}}</td>
+    <td>{{item.hours}}</td>
+    <td style="color: #f65e5e" ><b>-{{item.advance_salary | currency: 'INR'}}</b></td>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>

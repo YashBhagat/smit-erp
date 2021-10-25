@@ -1,0 +1,36 @@
+<h1>Add Department</h1>
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+
+
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Department Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+
+<div  *ngIf="!isLoadingResults" class="example-container">
+<form  *ngIf="!isAdded" (ngSubmit)="f.form.valid &&  addDepartmentDetails()" name="form" #f="ngForm">
+  <mat-form-field appearance="outline" >
+    <mat-label>Select Department</mat-label>
+    <mat-select [(ngModel)]="selectedDepartment" name="department"  required>
+      <mat-option *ngFor="let department of department" [value]="department.id">{{department.departement_name}}</mat-option>
+    </mat-select>
+
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 3 characters" appearance="outline" required>
+    <mat-label>Enter Department Price</mat-label>
+    <input matInput #price="ngModel" name="price" [(ngModel)]="form.price" maxlength="3" placeholder="Ex. 85" required>
+    <mat-hint align="end">{{price.value?.length || 0}}/3</mat-hint>
+  </mat-form-field>
+
+
+  <div mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary">Add Department</button>
+    <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+  </div>
+</form>
+</div>

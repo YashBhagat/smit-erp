@@ -1,0 +1,33 @@
+<mat-card class="example-card">
+  <mat-card-title-group>
+    <mat-card-title>{{employeesProfile.employee_name}}</mat-card-title>
+    <mat-card-subtitle><b>{{employeesProfile.company.company_name}}</b>
+      - {{employeesProfile.departement.departement_name}} </mat-card-subtitle>
+
+  </mat-card-title-group>
+  <mat-card-content>
+    <h1> Bank Details</h1>
+    <table *ngFor="let bankDetails of employeesProfile.bankDetails" style="width:100%">
+      <tr>
+        <td><b>Bank Name</b></td>
+        <td>{{bankDetails.bank_name}}</td>
+      </tr>
+      <tr>
+        <td><b>Bank Account Number</b></td>
+        <td>{{bankDetails.account_number}}</td>
+      </tr>
+      <tr>
+        <td><b>Account Holder Name </b></td>
+        <td>{{bankDetails.account_holder_name}}</td>
+      </tr>
+      <tr>
+        <td><b>Account IFSC Code</b></td>
+        <td>{{bankDetails.ifsc_code}}</td>
+      </tr>
+    </table>
+
+  </mat-card-content>
+  <div mat-dialog-actions>
+    <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+  </div>
+</mat-card>

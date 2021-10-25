@@ -1,0 +1,87 @@
+<h1 *ngIf="!update">Add Employee</h1>
+<h1 *ngIf="update">Update Employee</h1>
+<div class="example-loading-shade example-container"
+     *ngIf="isLoadingResults ">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+
+
+<div *ngIf="isAdded"  class="example-loading-shade example-container">
+  <img width="752" height="150" src="/assets/dataAdd.svg" alt="">
+  <h3> Employee Is Added Successfully!</h3>
+  <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+</div>
+
+<div  *ngIf="!isLoadingResults" class="example-container">
+  <form  *ngIf="!isAdded"  (ngSubmit)="f.form.valid &&  addEmployee()" name="form" #f="ngForm">
+  <mat-form-field hintLabel="Max 20 characters" appearance="outline">
+    <mat-label>Enter Employee Name</mat-label>
+    <input matInput #name="ngModel" name="name" [(ngModel)]="form.name" maxlength="20" placeholder="Ex. Yash Bhagat" required>
+    <mat-hint align="end">{{name.value?.length || 0}}/20</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+    <mat-label>Enter Phone Number</mat-label>
+    <span matPrefix>+91 &nbsp;</span>
+    <input matInput #phone_number="ngModel" name="phone_number" [(ngModel)]="form.phone_number" maxlength="10" minlength="10" type="tel" matInput placeholder="555-555-1234" required>
+    <mat-hint align="end">{{phone_number.value?.length || 0}}/10</mat-hint>
+  </mat-form-field>
+
+
+  <p>
+    <mat-form-field *ngIf="!update" appearance="outline">
+      <mat-label>Select Company</mat-label>
+      <mat-select (ngModelChange)="getDepartmentList( $event  )" [(ngModel)]="selectedCompany" name="company" required>
+        <mat-option *ngFor="let company of company"  [value]="company.id">
+          {{company.company_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!update" appearance="outline">
+      <mat-label>Select Department</mat-label>
+      <mat-select [(ngModel)]="selectedDepartment" name="department" >
+        <mat-option *ngFor="let department of department" [value]="department.departement.id">
+          {{department.departement.departement_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 3 characters" appearance="outline">
+      <mat-label>Enter Employee Rate</mat-label>
+      <input matInput #rate="ngModel" name="rate" [(ngModel)]="form.rate" maxlength="3" placeholder="Ex. 95" required>
+      <mat-hint align="end">{{rate.value?.length || 0}}/3</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <mat-form-field hintLabel="Max 20 characters" appearance="outline">
+     <mat-label>Bank Name</mat-label>
+     <input matInput #bank_name=ngModel name="bank_name" [(ngModel)]="form.bank_name" maxlength="20" placeholder="State Bank Of India" required>
+     <mat-hint align="end">{{bank_name.value?.length || 0}}/20</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 20 characters" appearance="outline">
+    <mat-label>Bank Account Holder Name</mat-label>
+    <input matInput #bank_holder_name=ngModel name="bank_holder_name" [(ngModel)]="form.bank_holder_name" maxlength="20" placeholder="Yash Rakesh Bhagat" required>
+    <mat-hint align="end">{{bank_holder_name.value?.length || 0}}/20</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 20 characters" appearance="outline">
+    <mat-label>Bank Account Number</mat-label>
+    <input matInput #bank_account_number=ngModel name="bank_account_number" [(ngModel)]="form.bank_account_number" maxlength="20" placeholder="454548734867" required>
+    <mat-hint align="end">{{bank_account_number.value?.length || 0}}/20</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 11 characters" appearance="outline">
+    <mat-label>Bank IFSC Code</mat-label>
+    <input matInput #bank_ifsc_code=ngModel name="bank_ifsc_code" [(ngModel)]="form.bank_ifsc_code" maxlength="11" placeholder="SBI00054575" required>
+    <mat-hint align="end">{{bank_ifsc_code.value?.length || 0}}/11</mat-hint>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button *ngIf="!update" type="submit" mat-raised-button color="primary">Add Employee</button>
+    <button *ngIf="update" (click)="updateEmployee()" mat-raised-button color="primary">Update Employee</button>
+    <button class="close-button" mat-raised-button  mat-dialog-close >Close</button>
+  </div>
+  </form>
+</div>
